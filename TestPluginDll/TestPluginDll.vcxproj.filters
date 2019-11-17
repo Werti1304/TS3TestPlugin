@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Ressourcendateien">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="include">
       <UniqueIdentifier>{edca9b4b-c843-46df-b6da-e0a5da63e962}</UniqueIdentifier>
     </Filter>
@@ -21,6 +17,13 @@
     </Filter>
     <Filter Include="include\teamlog">
       <UniqueIdentifier>{926c3469-d364-4237-aa2b-d46d5300f380}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="res\icons">
+      <UniqueIdentifier>{9e4013d5-9bd2-4379-aa7a-a1ebc29611d4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,16 +60,39 @@
     <ClInclude Include="include\teamlog\logtypes.h">
       <Filter>include\teamlog</Filter>
     </ClInclude>
+    <ClInclude Include="resources.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Wrapper.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TestPluginDll.c">
+    <ClCompile Include="Wrapper.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.c">
+    <ClCompile Include="plugin.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="dllmain.c">
+    <ClCompile Include="dllmain.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\icons\3.png">
+      <Filter>res\icons</Filter>
+    </Image>
+    <Image Include="res\icons\t.png">
+      <Filter>res\icons</Filter>
+    </Image>
+    <Image Include="res\icons\1.png">
+      <Filter>res\icons</Filter>
+    </Image>
+    <Image Include="res\icons\2.png">
+      <Filter>res\icons</Filter>
+    </Image>
   </ItemGroup>
 </Project>
