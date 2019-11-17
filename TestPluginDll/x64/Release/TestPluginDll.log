@@ -1,0 +1,4 @@
+﻿  TestPluginDll.c
+     Bibliothek "D:\TeamspeakPlugins\TestPluginDll\x64\Release\TestPluginDll.lib" und Objekt "D:\TeamspeakPlugins\TestPluginDll\x64\Release\TestPluginDll.exp" werden erstellt.
+TestPluginDll.obj : error LNK2001: Nicht aufgelöstes externes Symbol "ts3plugin_name".
+D:\TeamspeakPlugins\TestPluginDll\x64\Release\TestPluginDll.dll : fatal error LNK1120: 1 nicht aufgelöste Externe
