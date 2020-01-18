@@ -19,21 +19,6 @@ enum PluginItemType {
 	PLUGIN_CLIENT
 };
 
-enum PluginMenuType {
-	PLUGIN_MENU_TYPE_GLOBAL = 0,
-	PLUGIN_MENU_TYPE_CHANNEL,
-	PLUGIN_MENU_TYPE_CLIENT
-};
-
-#define PLUGIN_MENU_BUFSZ 128
-
-struct PluginMenuItem {
-	enum PluginMenuType type;
-	int id;
-	char text[PLUGIN_MENU_BUFSZ];
-	char icon[PLUGIN_MENU_BUFSZ];
-};
-
 #define PLUGIN_HOTKEY_BUFSZ 128
 
 struct PluginHotkey {

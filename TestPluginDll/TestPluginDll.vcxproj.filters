@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Quelldateien">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Headerdateien">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
@@ -18,22 +14,19 @@
     <Filter Include="include\teamlog">
       <UniqueIdentifier>{926c3469-d364-4237-aa2b-d46d5300f380}</UniqueIdentifier>
     </Filter>
-    <Filter Include="res">
+    <Filter Include="include\res">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="res\icons">
+    <Filter Include="include\res\icons">
       <UniqueIdentifier>{9e4013d5-9bd2-4379-aa7a-a1ebc29611d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu Items">
+      <UniqueIdentifier>{247cdcdb-6de3-4fec-9a4f-1ad24f79eaaf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="plugin.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="include\plugin_definitions.h">
@@ -63,30 +56,29 @@
     <ClInclude Include="resources.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="plugin.h" />
+    <ClInclude Include="menu.h">
+      <Filter>Menu Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="plugin.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="plugin.cpp" />
+    <ClCompile Include="menu.cpp">
+      <Filter>Menu Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\icons\3.png">
-      <Filter>res\icons</Filter>
+      <Filter>include\res\icons</Filter>
     </Image>
     <Image Include="res\icons\t.png">
-      <Filter>res\icons</Filter>
+      <Filter>include\res\icons</Filter>
     </Image>
     <Image Include="res\icons\1.png">
-      <Filter>res\icons</Filter>
+      <Filter>include\res\icons</Filter>
     </Image>
     <Image Include="res\icons\2.png">
-      <Filter>res\icons</Filter>
+      <Filter>include\res\icons</Filter>
     </Image>
   </ItemGroup>
 </Project>
