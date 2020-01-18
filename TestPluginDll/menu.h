@@ -4,6 +4,7 @@
 #include <cstring>
 #include <list>
 #include <utility>
+#include "include/teamspeak/public_definitions.h"
 
 #ifdef _WIN32
 #define _strcpy(dest, destSize, src) strcpy_s(dest, destSize, src)
@@ -16,20 +17,30 @@
 
 enum PluginMenuType
 {
-  PLUGIN_MENU_TYPE_GLOBAL = 0,
-  PLUGIN_MENU_TYPE_CHANNEL,
-  PLUGIN_MENU_TYPE_CLIENT
+  Global = 0,
+  Channel,
+  Client
 };
 
 /**
  * \brief Structure of a clickable menu-item in TeamSpeak.
  * Do not change the names!
  */
-struct PluginMenuItem {
+struct PluginMenuItem 
+{
   enum PluginMenuType type;
   int id;
   char text[PLUGIN_MENU_BUFSZ];
   char icon[PLUGIN_MENU_BUFSZ];
+};
+
+enum MenuItemID
+{
+  Item1,
+  Item2,
+  Item3,
+  ChannelChangeCodesToNormal,
+  ChannelChangeCodecToMusic
 };
 
 class MenuItem
@@ -37,22 +48,22 @@ class MenuItem
 public:
   static std::list<MenuItem> menuItems;
 
-  static uint16_t getCount()
-  {
-    return elementCount;
-  }
+  static void initMenus( PluginMenuItem*** aMenuItems, char** menuIcon );
 
-  static void getMenuItems( struct PluginMenuItem*** aMenuItems );
+  static void onMenuItemEvent(uint64 serverConnectionHandlerID, enum PluginMenuType type, int menuItemID, uint64 selectedItemID);
+  static void menuItemClickEventGlobal(uint64 serverConnectionHandlerID, MenuItemID menuItemID);
+  static void menuItemClickEventChannel(uint64 serverConnectionHandlerID, MenuItemID menuItemID, uint64 channelID);
+  static void menuItemClickEventClient(uint64 serverConnectionHandlerID, MenuItemID menuItemID, uint64 clientID);
 
-  explicit MenuItem(PluginMenuType menuType, std::string name, std::string resourcePath) :
-    id(elementCount++), menuType(menuType), name(std::move(name)), resourcePath(std::move(resourcePath))
+  explicit MenuItem(std::string name, MenuItemID menuItemId, PluginMenuType menuType, std::string resourcePath) :
+    id(menuItemId), menuType(menuType), name(std::move(name)), resourcePath(std::move(resourcePath))
   {
     menuItems.push_back(*this);
   }
 
   // Resource-Paths are not always needed, std::strings are automatically initialized with "", which is (maybe) perfect for our use case
-  explicit MenuItem(PluginMenuType menuType, std::string name) :
-    id(elementCount++), menuType(menuType), name(std::move(name))
+  explicit MenuItem(std::string name, MenuItemID menuItemId, PluginMenuType menuType) :
+    id(menuItemId), menuType(menuType), name(std::move(name))
   {
     menuItems.push_back(*this);
   }
@@ -82,10 +93,9 @@ public:
   __declspec(property(get = getResourcePath)) std::string IconPath;
 
 private:
-  static uint16_t elementCount;
-
   uint16_t id{ };
   PluginMenuType menuType;
   std::string name;
   std::string resourcePath;
 };
+

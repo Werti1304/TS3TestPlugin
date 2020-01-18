@@ -131,41 +131,11 @@ void ts3plugin_freeMemory(void* data)
 */
 void ts3plugin_initMenus(struct PluginMenuItem*** menuItems, char** menuIcon) 
 {
-  /*
-   * Create the menus
-   * There are three types of menu items:
-   * - PLUGIN_MENU_TYPE_CLIENT:  Client context menu
-   * - PLUGIN_MENU_TYPE_CHANNEL: Channel context menu
-   * - PLUGIN_MENU_TYPE_GLOBAL:  "Plugins" menu in menu bar of main window
-   *
-   * Menu IDs are used to identify the menu item when ts3plugin_onMenuItemEvent is called
-   *
-   * The menu text is required, max length is 128 characters
-   *
-   * The icon is optional, max length is 128 characters. When not using icons, just pass an empty string.
-   * Icons are loaded from a subdirectory in the TeamSpeak client plugins folder. The subdirectory must be named like the
-   * plugin filename, without dll/so/dylib suffix
-   * e.g. for "test_plugin.dll", icon "1.png" is loaded from <TeamSpeak 3 Client install dir>\plugins\test_plugin\1.png
-   */
+  MenuItem::initMenus(menuItems, menuIcon);
+}
 
-  MenuItem::getMenuItems(menuItems);
-
-  /*
-   * Specify an optional icon for the plugin. This icon is used for the plugins submenu within context and main menus
-   * If unused, set menuIcon to NULL
-   */
-  *menuIcon = (char*)malloc(PLUGIN_MENU_BUFSZ * sizeof(char));
-  _strcpy(*menuIcon, PLUGIN_MENU_BUFSZ, "t.png");
-
-  /*
-   * Menus can be enabled or disabled with: ts3Functions.setPluginMenuEnabled(pluginID, menuID, 0|1);
-   * Test it with plugin command: /test enablemenu <menuID> <0|1>
-   * Menus are enabled by default. Please note that shown menus will not automatically enable or disable when calling this function to
-   * ensure Qt menus are not modified by any thread other the UI thread. The enabled or disable state will change the next time a
-   * menu is displayed.
-   */
-   /* For example, this would disable MENU_ID_GLOBAL_2: */
-   /* ts3Functions.setPluginMenuEnabled(pluginID, MENU_ID_GLOBAL_2, 0); */
-
-   /* All memory allocated in this function will be automatically released by the TeamSpeak client later by calling ts3plugin_freeMemory */
+void ts3plugin_onMenuItemEvent( uint64 serverConnectionHandlerID, PluginMenuType type, int menuItemID,
+  uint64 selectedItemID )
+{
+  MenuItem::onMenuItemEvent(serverConnectionHandlerID, type, menuItemID, selectedItemID);
 }
