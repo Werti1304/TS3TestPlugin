@@ -1,7 +1,4 @@
 #pragma once
-#include "include/plugin_definitions.h"
-#include <cstdlib>
-#include <cstring>
 #include <list>
 #include <utility>
 #include "include/teamspeak/public_definitions.h"

@@ -3,7 +3,7 @@
 
 //The idea here is: the values are 2 bytes wide, the first byte identifies the group, the second the count within that group
 
-enum Ts3RareErrorType {
+enum Ts3RareError : unsigned int {
 	//client
 	ERROR_client_invalid_password                = 0x0208,
 	ERROR_client_too_many_clones_connected       = 0x0209,

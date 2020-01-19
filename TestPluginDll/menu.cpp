@@ -1,6 +1,7 @@
+#include "stdafx.h"
 #include "menu.h"
-#include <cassert>
 #include "include/teamspeak/public_definitions.h"
+#include "Invoker.h"
 
 // Static members have to be declared in a .cpp file
 std::list<MenuItem> MenuItem::menuItems;
@@ -51,10 +52,18 @@ void MenuItem::menuItemClickEventChannel(uint64 serverConnectionHandlerID, MenuI
 {
   switch (menuItemID)
   {
-  case ChannelChangeCodesToNormal: 
-    
+  case ChannelChangeCodesToNormal:
+    Invoker::Channel::setCodec(serverConnectionHandlerID, channelID, CODEC_OPUS_VOICE );
+    Invoker::Channel::setCodecQuality(serverConnectionHandlerID, channelID, 6 );
+    Invoker::Channel::setTopic(serverConnectionHandlerID, channelID, "Automatically configured Voice-Channel");
+    Invoker::Channel::applyAllChanges(serverConnectionHandlerID, channelID);
     break;
-  case ChannelChangeCodecToMusic: break;
+  case ChannelChangeCodecToMusic: 
+    Invoker::Channel::setCodec(serverConnectionHandlerID, channelID, CODEC_OPUS_MUSIC );
+    Invoker::Channel::setCodecQuality(serverConnectionHandlerID, channelID, 10);
+    Invoker::Channel::setTopic(serverConnectionHandlerID, channelID, "Automatically configured Music-Channel");
+    Invoker::Channel::applyAllChanges(serverConnectionHandlerID, channelID);
+    break;
   default: ;
   }
 }
@@ -69,6 +78,8 @@ void MenuItem::menuItemClickEventClient(uint64 serverConnectionHandlerID, MenuIt
 
 void MenuItem::onMenuItemEvent(uint64 serverConnectionHandlerID, enum PluginMenuType type, int menuItemID, uint64 selectedItemID)
 {
+  ts3Functions.logMessage("Hi2", LogLevel_ERROR, "", serverConnectionHandlerID);
+
   switch (type) {
   case Global: 
     menuItemClickEventGlobal(serverConnectionHandlerID, static_cast<MenuItemID>(menuItemID));

@@ -3,7 +3,6 @@
  *
  * Copyright (c) TeamSpeak Systems GmbH
  */
-
 #ifndef PLUGIN_H
 #define PLUGIN_H
 
@@ -12,6 +11,7 @@
 #else
 #define PLUGINS_EXPORTDLL __attribute__ ((visibility("default")))
 #endif
+#include "menu.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,7 +31,7 @@ PLUGINS_EXPORTDLL void ts3plugin_shutdown();
 PLUGINS_EXPORTDLL void ts3plugin_registerPluginID(const char* id);
 PLUGINS_EXPORTDLL void ts3plugin_freeMemory(void* data);
 PLUGINS_EXPORTDLL void ts3plugin_initMenus(struct PluginMenuItem*** menuItems, char** menuIcon);
-PLUGINS_EXPORTDLL void ts3plugin_onMenuItemEvent(uint64 serverConnectionHandlerID, enum PluginMenuType type, int menuItemID, uint64 selectedItemID);
+PLUGINS_EXPORTDLL void ts3plugin_onMenuItemEvent(uint64 serverConnectionHandlerID, PluginMenuType type, int menuItemID, uint64 selectedItemID);
 
 #ifdef __cplusplus
 }

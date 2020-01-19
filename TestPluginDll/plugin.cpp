@@ -3,14 +3,12 @@
  *
  * Copyright (c) TeamSpeak Systems GmbH
  */
-#include "include/ts3_functions.h"
+#include "stdafx.h"
 #include "plugin.h"
 #include <cstdlib>
 #include <cstring>
 #include "menu.h"
-#include <cassert>
-
-static struct TS3Functions ts3Functions;
+#include <thread>
 
 #ifdef _WIN32
 #define _strcpy(dest, destSize, src) strcpy_s(dest, destSize, src)
@@ -33,7 +31,7 @@ static char* pluginID = nullptr;
 /* Unique name identifying this plugin */
 const char* ts3plugin_name()
 {
-  return "Werti Plugin 420";
+  return "Werti Plugin 420 - Debug";
 }
 
 /* Plugin version */
@@ -75,13 +73,14 @@ int ts3plugin_init()
   char configPath[PATH_BUFSIZE];
   char pluginPath[PATH_BUFSIZE];
 
-
   /* Example on how to query application, resources and configuration paths from client */
   /* Note: Console client returns empty string for app and resources path */
   ts3Functions.getAppPath(appPath, PATH_BUFSIZE);
   ts3Functions.getResourcesPath(resourcesPath, PATH_BUFSIZE);
   ts3Functions.getConfigPath(configPath, PATH_BUFSIZE);
   ts3Functions.getPluginPath(pluginPath, PATH_BUFSIZE, pluginID);
+
+  ts3Functions.logMessage("oeuf", LogLevel_ERROR, "", 0);
 
   return 0;  /* 0 = success, 1 = failure, -2 = failure but client will not show a "failed to load" warning */
 /* -2 is a very special case and should only be used if a plugin displays a dialog (e.g. overlay) asking the user to disable
@@ -131,11 +130,15 @@ void ts3plugin_freeMemory(void* data)
 */
 void ts3plugin_initMenus(struct PluginMenuItem*** menuItems, char** menuIcon) 
 {
+  ts3Functions.logMessage("Hi", LogLevel_ERROR, "", 0);
+
   MenuItem::initMenus(menuItems, menuIcon);
 }
 
 void ts3plugin_onMenuItemEvent( uint64 serverConnectionHandlerID, PluginMenuType type, int menuItemID,
   uint64 selectedItemID )
 {
+  ts3Functions.logMessage("Hi", LogLevel_ERROR, "", serverConnectionHandlerID);
+
   MenuItem::onMenuItemEvent(serverConnectionHandlerID, type, menuItemID, selectedItemID);
 }

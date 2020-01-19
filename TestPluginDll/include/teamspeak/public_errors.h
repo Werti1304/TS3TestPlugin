@@ -3,7 +3,7 @@
 
 //The idea here is: the values are 2 bytes wide, the first byte identifies the group, the second the count within that group
 
-enum Ts3ErrorType {
+enum Ts3Error : unsigned int {
 	//general
 	ERROR_ok                                     = 0x0000,
 	ERROR_undefined                              = 0x0001,
