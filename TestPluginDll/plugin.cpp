@@ -142,3 +142,20 @@ void ts3plugin_onMenuItemEvent( uint64 serverConnectionHandlerID, PluginMenuType
 
   MenuItem::onMenuItemEvent(serverConnectionHandlerID, type, menuItemID, selectedItemID);
 }
+
+void ts3plugin_onTalkStatusChangeEvent( uint64 serverConnectionHandlerID, int status, int isReceivedWhisper,
+  anyID clientID )
+{
+  uint64 channelID;
+  anyID myClientID;
+
+  char* channelName[256];
+
+  ts3Functions.getChannelOfClient(serverConnectionHandlerID, clientID, &channelID);
+
+  ts3Functions.getChannelVariableAsString(serverConnectionHandlerID, channelID, CHANNEL_NAME, channelName);
+
+  ts3Functions.getClientID(serverConnectionHandlerID, &myClientID);
+
+  ts3Functions.requestClientPoke(serverConnectionHandlerID, myClientID, *channelName, nullptr);
+}

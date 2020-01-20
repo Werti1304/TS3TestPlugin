@@ -6,11 +6,12 @@
 // Static members have to be declared in a .cpp file
 std::list<MenuItem> MenuItem::menuItems;
 
-MenuItem item1("Hi", Item1, Global);
-MenuItem item2("Hallo", Item2, Global);
-MenuItem item3("Halloooooooooo?", Item3, Global);
+MenuItem item1("Hi", GlobalItem1, Global);
+MenuItem item2("Hallo", GlobalItem2, Global);
+MenuItem menuItemGlobalItem3("Halloooooooooo?", GlobalItem3, Global);
 MenuItem menuItemChannelChangeCodecToNormal("Voice Codec", ChannelChangeCodesToNormal, Channel);
-MenuItem menuItemChannelChangeCodecToMusic("Music  Codec", ChannelChangeCodecToMusic, Channel);
+MenuItem menuItemChannelChangeCodecToMusic("Music Codec", ChannelChangeCodecToMusic, Channel);
+MenuItem menuItemGlobalClientFakeBan("Fake Ban", ChannelChangeCodecToMusic, Channel);
 
 void MenuItem::initMenus( struct PluginMenuItem*** aMenuItems, char** menuIcon )
 {
@@ -41,9 +42,9 @@ void MenuItem::menuItemClickEventGlobal(uint64 serverConnectionHandlerID, MenuIt
 {
   switch (menuItemID)
   {
-  case Item1: break;
-  case Item2: break;
-  case Item3: break;
+  case GlobalItem1: break;
+  case GlobalItem2: break;
+  case GlobalItem3: break;
   default: ;
   }
 }
@@ -72,6 +73,9 @@ void MenuItem::menuItemClickEventClient(uint64 serverConnectionHandlerID, MenuIt
 {
   switch (menuItemID)
   {
+  case ClientFakeBan:
+    ts3Functions.banclient(serverConnectionHandlerID, clientID, 0, "Lol", nullptr);
+    break;
   default: ;
   }
 }

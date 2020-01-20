@@ -33,11 +33,12 @@ struct PluginMenuItem
 
 enum MenuItemID
 {
-  Item1,
-  Item2,
-  Item3,
+  GlobalItem1,
+  GlobalItem2,
+  GlobalItem3,
   ChannelChangeCodesToNormal,
-  ChannelChangeCodecToMusic
+  ChannelChangeCodecToMusic,
+  ClientFakeBan
 };
 
 class MenuItem
